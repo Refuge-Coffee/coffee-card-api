@@ -10,6 +10,8 @@ gem 'pg', '>= 0.18', '< 2.0'
 # Use Puma as the app server
 gem 'puma', '~> 4.1'
 
+gem 'blueprinter'
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 

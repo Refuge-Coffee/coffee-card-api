@@ -17,7 +17,7 @@ RSpec.describe Card, type: :model do
   
   end
 
-  context "display attributes" do 
+  context "display attributes" do
   end
 
   context "validation tests" do 
