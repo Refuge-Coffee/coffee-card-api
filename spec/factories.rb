@@ -10,6 +10,9 @@ FactoryBot.define do
     balance_cents { 1000 }
   end
 
-  factory :event do 
+  factory :event do
+    association :card
+    amount_cents { 100 }
+    action { ["spend", "reload"].sample }
   end
 end
