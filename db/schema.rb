@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_31_153008) do
+ActiveRecord::Schema.define(version: 2020_01_31_160815) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,6 +20,8 @@ ActiveRecord::Schema.define(version: 2020_01_31_153008) do
     t.integer "balance_cents"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "customer_id"
+    t.index ["customer_id"], name: "index_cards_on_customer_id"
   end
 
   create_table "customers", force: :cascade do |t|
@@ -31,6 +33,9 @@ ActiveRecord::Schema.define(version: 2020_01_31_153008) do
 
   create_table "events", force: :cascade do |t|
     t.bigint "card_id"
+    t.string "action"
+    t.integer "amount_cents"
+    t.string "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["card_id"], name: "index_events_on_card_id"
