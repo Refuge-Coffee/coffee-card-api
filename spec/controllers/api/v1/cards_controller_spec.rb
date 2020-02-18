@@ -17,13 +17,16 @@ RSpec.describe Api::V1::CardsController do
   describe "GET #show" do
 
     before(:all) do 
-      @card = FactoryBot.create(:card, full_number: "0101020203030404")
+      @card = FactoryBot.create(:card)
     end
 
     it "should fetch a card - given a valid card number" do
-      get :search, params: { card_number: "0101020203030404"}
+      get :search, params: { card_number: @card.full_number }
       expect(response.content_type).to eq "application/json; charset=utf-8"
       expect(response.status).to eq(200)
+      parsed = parse_response(response)
+      expect(parsed["id"]).to eq(@card.id)
+      expect(parsed["full_number"]).to eq(@card.full_number)
     end
     
     it "should not fetch a card - given in invalid number" do 
@@ -37,5 +40,9 @@ RSpec.describe Api::V1::CardsController do
       expect(response.content_type).to eq "application/json; charset=utf-8"
       expect(response.status).to eq(400)
     end
+  end
+
+  def parse_response(response)
+    JSON.parse(response.body)
   end
 end

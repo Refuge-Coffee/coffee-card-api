@@ -1,6 +1,6 @@
 class Api::V1::CardsController < ApplicationController
   def search
-    card = Card.where(full_number: params[:card_number])
+    card = Card.find_by(full_number: params[:card_number])
     if card.present?
       render json: CardBlueprint.render(card, view: :normal)
     elsif params[:card_number].length == 16
